@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Local Stored Data 
+CakeSystems/CakeSell/migrations/
+
+# Local folder config
+.DS_Store
+.idea/
+
+# Other files 
+tips.txt
+
