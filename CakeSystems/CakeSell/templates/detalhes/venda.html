@@ -1,5 +1,22 @@
 {% extends 'adminlte/base.html' %}
 {% block content %}
+
+<table>
+    <thead>
+        <th>Detalhes do cliente</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Nome: {{ object.cliente.nome }}
+            </td>
+            <td>
+                CPF: {{ object.cliente.cpf }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
     <h1>Detalhes da venda:</h1>
 
 <p><b>Nome:</b> {{ object.nome }}</p>

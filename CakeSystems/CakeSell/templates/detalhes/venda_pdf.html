@@ -4,22 +4,76 @@
 {% block content %}
 
 <meta charset="utf-8">
-
-<div id="content">
-    <div class="main">
-        <center><h1>Recibo da venda Número {{ object.pk }}</h1></center>
-        <center>Venda realizada em {{ object.data_hora_venda }}</center>
-        <br/>
-        <br/>
-        <h3>Dados da Venda</h3>
-        <p><b>Nome:</b> {{ object.nome }}</p>
-        <p><b>Valor:</b> {{ object.valor }}</p>
-        <p><b>Observação:</b> {{ object.observacao }}</p>
-        <br/>
-        <h3>Dados do cliente</h3>
-        <p><b>Cliente:</b> {{ object.cliente }}</p>
-        <p><b>CPF:</b> {{ object.cliente.cpf }}</p>
-        <p><b>E-mail:</b> {{ object.cliente.email_cliente }}</p>
-    </div>
+<h1>Detalhes da Venda PDF</h1>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <th align="left" style="font-size=14px">Detalhes do cliente</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <strong>Nome:</strong> {{ object.cliente.nome }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>CPF:</strong> {{ object.cliente.cpf }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Telefone:</strong> {{ object.cliente.celular }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div style="margin-top: 40px">
+    <table>
+    <thead>
+        <th align="left" style="font-size=14px">Detalhes da venda</th>
+    </thead>
+    <tbody>
+    <tr>
+            <td>
+                <strong>Data da venda:</strong> {{ object.dataVenda }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Valor total:</strong> R$ {{ object.valor }}
+            </td>
+        </tr>
+    <tr>
+            <td>
+                <strong>Tamanho:</strong> {{ object.tamanhoBolo }}
+            </td>
+        </tr>
+    <tr>
+            <td>
+                <strong>Quantidade:</strong> {{ object.qtdeVenda }}
+            </td>
+        </tr>
+    <tr>
+            <td>
+                <strong>Tipo de massa:</strong>
+                {% for massa in object.massa.all %}
+                    {{ massa.tipoMassa }}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Recheio:</strong>
+                {% for recheio in object.recheio.all %}
+                <ul>
+                    <li>{{ recheio.tipoRecheio }}</li>
+                </ul>
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
+</table>
 </div>
 {% endblock %}
