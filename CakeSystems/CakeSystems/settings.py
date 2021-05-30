@@ -60,38 +60,39 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 SITE_ID = 1
 
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SDK_URL': '//connect.facebook.net/pt-BR/sdk.js',
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'first_name',
-            'last_name',
-            'middle_name',
-            'name',
-            'name_format',
-            'picture',
-            'email',
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v7.0',
-        'TesteDoAllAuth': {
-            'client_id': '182919610377854',
-            'secret': 'd10c294d593cd2487a1ed94e100b457a',
-            'key': ''
-        }
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'facebook': {
+#         'METHOD': 'oauth2',
+#         'SDK_URL': '//connect.facebook.net/pt-BR/sdk.js',
+#         'SCOPE': ['email', 'public_profile'],
+#         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+#         'INIT_PARAMS': {'cookie': True},
+#         'FIELDS': [
+#             'id',
+#             'first_name',
+#             'last_name',
+#             'middle_name',
+#             'name',
+#             'name_format',
+#             'picture',
+#             'email',
+#         ],
+#         'EXCHANGE_TOKEN': True,
+#         'LOCALE_FUNC': 'path.to.callable',
+#         'VERIFIED_EMAIL': False,
+#         'VERSION': 'v7.0',
+#         'TesteDoAllAuth': {
+#             'client_id': '182919610377854',
+#             'secret': 'd10c294d593cd2487a1ed94e100b457a',
+#             'key': ''
+#         }
+#     }
+# }
 
 INSTALLED_APPS = DEFAULT_APPS + MY_APPS + THIRDS_APPS
 
-LOGIN_REDIRECT_URL = '/cakesell/listar/cliente'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/logout'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -108,7 +109,7 @@ ROOT_URLCONF = 'CakeSystems.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

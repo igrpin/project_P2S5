@@ -1,0 +1,41 @@
+{% extends 'adminlte/base.html' %}
+{% block content %}
+{% if venda_list %}
+  <table class="table table-striped">
+      <thead>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Data da venda</th>
+          <th>Venda concluída?</th>
+          <th>Tamanho do bolo</th>
+          <th>Ações</th>
+      </thead>
+      {% for venda in venda_list %}
+      <tbody>
+      <tr>
+        <td>{{ venda.id }}</td>
+        <td>{{ venda.cliente.nome }}</td>
+        <td>{{ venda.dataVenda }}</td>
+
+        <td> {% if venda.vendaConcluida %}
+                Sim
+             {% else %}
+                Não
+             {% endif %}
+        </td>
+        <td>{{ venda.tamanhoBolo }}</td>
+        <td>
+            <a href="{% url 'atualizarVendaTamanhoBolo' venda.pk %}"><i class="fa fa-birthday-cake" rel="tooltip" style="margin-right: 8px" title="Atualizar tamanho do bolo"></i> </a>
+            <a href="{% url 'atualizarVendaConcluida' venda.pk %}"><i class="fa fa-check-square" rel="tooltip" title="Atualizar conclusão da venda"></i></a>
+        </td>
+      </tr>
+      </tbody>
+      {% endfor %}
+  </table>
+
+{% else %}
+<p>Não há dados para exibir</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'adminlte/base.html' %}
+{% block content %}
+{% if estoque_list %}
+  <table class="table table-striped">
+      <thead>
+          <th>ID</th>
+          <th>Produto</th>
+          <th>Valor</th>
+          <th>Marca</th>
+          <th>Quantidade</th>
+          <th>Fornecedor</th>
+          <th>Ações</th>
+      </thead>
+      {% for estoq in estoque_list %}
+      <tbody>
+        <td>{{ estoq.id }}</td>
+        <td>{{ estoq.produto }}</td>
+        <td>{{ estoq.valor }}</td>
+        <td>{{ estoq.marca }}</td>
+        <td>{{ estoq.quantidade }}</td>
+        <td>{{ estoq.fornecedor.razaoSocial }}</td>
+        <td>
+            <a href="{% url 'atualizarValorEstoque' estoq.pk %}"><i class="fa fa-plus" rel="tooltip" style="margin-right: 8px" title="Atualizar valor do produto"></i> </a>
+            <a href="{% url 'atualizarQuantidadeEstoque' estoq.pk %}"><i class="fa fa-list" rel="tooltip" title="Atualizar quantidade do produto"></i></a>
+        </td>
+      </tbody>
+      {% endfor %}
+  </table>
+
+{% else %}
+<p>Não há dados para exibir</p>
+{% endif %}
+
+{% endblock %}
+

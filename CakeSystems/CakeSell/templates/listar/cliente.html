@@ -2,32 +2,34 @@
 {% block content %}
 {% if cliente_list %}
   <table class="table table-striped">
-      <tr>
+      <thead>
           <th>ID</th>
           <th>Nome</th>
           <th>Celular</th>
-      </tr>
+          <th>Ações</th>
+      </thead>
+      <tbody>
       {% for cliente in cliente_list %}
       <tr>
         <td>{{ cliente.id }}</td>
         <td>{{ cliente.nome }}</td>
         <td>{{ cliente.celular }}</td>
+          <td>
+              <a href="{% url 'atualizarCliente' cliente.pk %}"><i class="fa fa-edit" rel="tooltip" title="Atualizar dados do cliente"></i> </a>
+          </td>
       </tr>
       {% endfor %}
+      </tbody>
   </table>
 
 {% else %}
-{% endif %}<p>Não há dados para exibir</p>
+<p>Não há dados para exibir</p>
+{% endif %}
 
 <div>Last login at: {{ user.last_login }} </div>
 <div>First name: {{ user.first_name }} </div>
 <div>Last name: {{ user.last_name }} </div>
 <div>E-mail: {{ user.email }} </div>
-<!--<div>Extra_data: {{ socialaccount }} </div>-->
-
-<!--{% load account %}-->
-
-<!--{% user_display user %}-->
 
 {% endblock %}
 

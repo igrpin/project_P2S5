@@ -1,0 +1,41 @@
+{% extends 'adminlte/base.html' %}
+{% block content %}
+
+{% load socialaccount %}
+<html>
+<body>
+{% if user.is_authenticated %}
+<h1>LOGGED IN WITH FACEBOOK</h1>
+  <p>Logado como: {{ user.email }}</p>
+{% else %}
+  <a href="{% provider_login_url 'facebook' %}">Login With Facebook</a>
+{% endif %}
+
+
+<h3>Cliente</h3>
+<ul>
+    <li><a href="{% url 'listarCliente' %}">Listar</a><br></li>
+    <li><a href="{% url 'cadastrarCliente' %}">Cadastrar</a></li>
+</ul>
+
+<h3>Venda</h3>
+<ul>
+    <li><a href="{% url 'listarVenda' %}">Listar</a><br></li>
+    <li><a href="{% url 'cadastrarVenda' %}">Cadastrar</a></li>
+</ul>
+
+<h3>Estoque</h3>
+<ul>
+    <li><a href="{% url 'listarEstoque' %}">Listar</a><br></li>
+    <li><a href="{% url 'cadastrarEstoque' %}">Cadastrar</a></li>
+</ul>
+
+<h3>Fornecedor</h3>
+<ul>
+    <li><a href="{% url 'listarFornecedor' %}">Listar</a><br></li>
+    <li><a href="{% url 'cadastrarFornecedor' %}">Cadastrar</a></li>
+</ul>
+
+</body>
+</html>
+{% endblock %}

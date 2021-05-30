@@ -1,0 +1,35 @@
+{% extends 'adminlte/base.html' %}
+{% block content %}
+{% if fornecedor_list %}
+  <table class="table table-striped">
+      <thead>
+          <th>ID</th>
+          <th>Razão Social</th>
+          <th>CNPJ</th>
+          <th>Nome do Contato</th>
+          <th>Status do fornecedor</th>
+          <th>Ações</th>
+
+      </thead>
+      {% for f in fornecedor_list %}
+      <tbody>
+        <td>{{ f.id }}</td>
+        <td>{{ f.razaoSocial }}</td>
+        <td>{{ f.cnpj }}</td>
+        <td>{{ f.nomeDoContato }}</td>
+        <td>{{ f.statusFornecedor }}</td>
+        <td>
+            <a href="{% url 'atualizarContatoFornecedor' f.pk %}"><i class="fa fa-phone" rel="tooltip" title="Atualizar nome do contato"></i> </a>
+            <a href="{% url 'atualizarStatusFornecedor' f.pk %}"><i class="fa fa-check-square" rel="tooltip" title="Atualizar status do fornecedor"></i></a>
+        </td>
+        </td>
+      </tbody>
+      {% endfor %}
+  </table>
+
+{% else %}
+<p>Não há dados para exibir</p>
+{% endif %}
+
+{% endblock %}
+

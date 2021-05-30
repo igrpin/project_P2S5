@@ -1,0 +1,10 @@
+{% extends 'adminlte/base.html' %}
+{% load bootstrap %}
+{% block content %}
+<h1>Atualizar Cliente</h1>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form|bootstrap }}
+    <input type="submit" class="btn btn-primary" value="Atualizar">
+    <a href="{% url 'listarCliente' %}" class="btn btn-secondary">Voltar</a>
+</form>
+{% endblock %}
