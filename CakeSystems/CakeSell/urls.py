@@ -16,6 +16,7 @@ from .views import (
     FornecedorUpdateStatusView,
     EstoqueUpdateQuantidadeView,
     EstoqueUpdateValorView,
+    VendaPDF,
 )
 
 
@@ -35,5 +36,6 @@ urlpatterns = [
     path('atualizar/contato/fornecedor/<int:pk>', FornecedorUpdateContatoView.as_view(), name="atualizarContatoFornecedor"),
     path('atualizar/quantidade/estoque/<int:pk>', EstoqueUpdateQuantidadeView.as_view(), name="atualizarQuantidadeEstoque"),
     path('atualizar/valor/estoque/<int:pk>', EstoqueUpdateValorView.as_view(), name="atualizarValorEstoque"),
+    path('detalhe/venda/pdf/<int:pk>', VendaPDF.as_view(), name="vendaDetalhePdf"),
 ]
 

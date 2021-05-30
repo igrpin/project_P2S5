@@ -26,7 +26,8 @@
         <td>{{ venda.tamanhoBolo }}</td>
         <td>
             <a href="{% url 'atualizarVendaTamanhoBolo' venda.pk %}"><i class="fa fa-birthday-cake" rel="tooltip" style="margin-right: 8px" title="Atualizar tamanho do bolo"></i> </a>
-            <a href="{% url 'atualizarVendaConcluida' venda.pk %}"><i class="fa fa-check-square" rel="tooltip" title="Atualizar conclusão da venda"></i></a>
+            <a href="{% url 'atualizarVendaConcluida' venda.pk %}"><i class="fa fa-check-square" rel="tooltip" style="margin-right: 8px" title="Atualizar conclusão da venda"></i></a>
+            <a href="{% url 'vendaDetalhePdf' venda.pk %}"><i class="fa fa-file-pdf" rel="tooltip" title="Gerar PDF com detalhes da venda"></i></a>
         </td>
       </tr>
       </tbody>

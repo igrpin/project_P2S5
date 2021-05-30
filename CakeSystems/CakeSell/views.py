@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, UpdateView, View
+from django.views.generic import CreateView, ListView, UpdateView, View, DetailView
 from .models import (Cliente, Venda, Estoque, Fornecedor)
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import *
-from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.decorators import login_required
+from easy_pdf.views import PDFTemplateResponseMixin
+
 
 
 class LoginRequiredMixin(object):
@@ -43,6 +44,15 @@ class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('listarCliente')
 
+
+class VendaDetailView(DetailView):
+    model = Venda
+    template_name = 'detalhes/venda.html'
+
+
+class VendaPDF(PDFTemplateResponseMixin, DetailView):
+    model = Venda
+    template_name = 'detalhes/venda_pdf.html'
 
 
 class VendaListView(LoginRequiredMixin, ListView):
@@ -165,3 +175,4 @@ class EstoqueUpdateValorView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('listarEstoque')
+

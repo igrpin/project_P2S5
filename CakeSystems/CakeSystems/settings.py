@@ -53,7 +53,8 @@ THIRDS_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
-    'django_extensions'
+    'django_extensions',
+    'easy_pdf',
 ]
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
