@@ -6,19 +6,28 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import *
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
+
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
 
 
 def index(request):
     return render(request, 'index.html')
 
 
-class ClienteListView(ListView):
+class ClienteListView(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = 'listar/cliente.html'
     fields = '__all__'
 
 
-class ClienteCreateView(CreateView):
+class ClienteCreateView(LoginRequiredMixin, CreateView):
     model = Cliente
     template_name = 'cadastrar/cliente.html'
     fields = '__all__'
@@ -27,7 +36,7 @@ class ClienteCreateView(CreateView):
         return reverse_lazy('listarCliente')
 
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Cliente
     template_name = 'atualizar/cliente/atualizar_cliente.html'
 
@@ -36,13 +45,13 @@ class ClienteUpdateView(UpdateView):
 
 
 
-class VendaListView(ListView):
+class VendaListView(LoginRequiredMixin, ListView):
     model = Venda
     template_name = 'listar/venda.html'
     fields = '__all__'
 
 
-class VendaCreateView(CreateView):
+class VendaCreateView(LoginRequiredMixin, CreateView):
     model = Venda
     template_name = 'cadastrar/venda.html'
     fields = '__all__'
@@ -51,13 +60,13 @@ class VendaCreateView(CreateView):
         return reverse_lazy('listarVenda')
 
 
-class EstoqueListView(ListView):
+class EstoqueListView(LoginRequiredMixin, ListView):
     model = Estoque
     template_name = 'listar/estoque.html'
     fields = '__all__'
 
 
-class EstoqueCreateView(CreateView):
+class EstoqueCreateView(LoginRequiredMixin, CreateView):
     model = Estoque
     template_name = 'cadastrar/estoque.html'
     fields = '__all__'
@@ -66,13 +75,13 @@ class EstoqueCreateView(CreateView):
         return reverse_lazy('listarEstoque')
 
 
-class FornecedorListView(ListView):
+class FornecedorListView(LoginRequiredMixin, ListView):
     model = Fornecedor
     template_name = 'listar/fornecedor.html'
     fields = '__all__'
 
 
-class FornecedorCreateView(CreateView):
+class FornecedorCreateView(LoginRequiredMixin, CreateView):
     model = Fornecedor
     template_name = 'cadastrar/fornecedor.html'
     fields = '__all__'
@@ -81,13 +90,13 @@ class FornecedorCreateView(CreateView):
         return reverse_lazy('listarFornecedor')
 
 
-class FornecedorListView(ListView):
+class FornecedorListView(LoginRequiredMixin, ListView):
     model = Fornecedor
     template_name = 'listar/fornecedor.html'
     fields = '__all__'
 
 
-class FornecedorCreateView(CreateView):
+class FornecedorCreateView(LoginRequiredMixin, CreateView):
     model = Fornecedor
     template_name = 'cadastrar/fornecedor.html'
     fields = '__all__'
@@ -96,7 +105,7 @@ class FornecedorCreateView(CreateView):
         return reverse_lazy('listarFornecedor')
 
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin, UpdateView):
     model = Cliente
     form_class = ClienteUpdateForm
     template_name = 'atualizar/cliente/atualizar_cliente.html'
@@ -105,7 +114,7 @@ class ClienteUpdateView(UpdateView):
         return reverse_lazy('listarCliente')
 
 
-class VendaTamanhoBoloUpdateView(UpdateView):
+class VendaTamanhoBoloUpdateView(LoginRequiredMixin, UpdateView):
     model = Venda
     form_class = VendaUpdateTamanhoBolo
     template_name = 'atualizar/venda/atualizar_tamanho_bolo_venda.html'
@@ -113,7 +122,7 @@ class VendaTamanhoBoloUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('listarVenda')
 
-class VendaUpdateConcluidaView(UpdateView):
+class VendaUpdateConcluidaView(LoginRequiredMixin, UpdateView):
     model = Venda
     form_class = VendaUpdateConcluida
     template_name = 'atualizar/venda/atualizar_venda_concluida.html'
@@ -122,7 +131,7 @@ class VendaUpdateConcluidaView(UpdateView):
         return reverse_lazy('listarVenda')
 
 
-class FornecedorUpdateContatoView(UpdateView):
+class FornecedorUpdateContatoView(LoginRequiredMixin, UpdateView):
     model = Fornecedor
     form_class = FornecedorUpdateContato
     template_name = 'atualizar/fornecedor/atualizar_contato_fornecedor.html'
@@ -131,7 +140,7 @@ class FornecedorUpdateContatoView(UpdateView):
         return reverse_lazy('listarFornecedor')
 
 
-class FornecedorUpdateStatusView(UpdateView):
+class FornecedorUpdateStatusView(LoginRequiredMixin, UpdateView):
     model = Fornecedor
     form_class = FornecedorUpdateStatus
     template_name = 'atualizar/fornecedor/atualizar_status_fornecedor.html'
@@ -140,7 +149,7 @@ class FornecedorUpdateStatusView(UpdateView):
         return reverse_lazy('listarFornecedor')
 
 
-class EstoqueUpdateQuantidadeView(UpdateView):
+class EstoqueUpdateQuantidadeView(LoginRequiredMixin, UpdateView):
     model = Estoque
     form_class = EstoqueUpdateQuantidade
     template_name = 'atualizar/estoque/atualizar_quantidade_estoque.html'
@@ -149,7 +158,7 @@ class EstoqueUpdateQuantidadeView(UpdateView):
         return reverse_lazy('listarEstoque')
 
 
-class EstoqueUpdateValorView(UpdateView):
+class EstoqueUpdateValorView(LoginRequiredMixin, UpdateView):
     model = Estoque
     form_class = EstoqueUpdateValor
     template_name = 'atualizar/estoque/atualizar_valor_estoque.html'
