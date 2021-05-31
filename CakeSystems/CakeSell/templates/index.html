@@ -4,10 +4,7 @@
 {% load socialaccount %}
 
 {% if user.is_authenticated %}
-<h1>LOGGED IN WITH FACEBOOK</h1>
-  <p>Logado como: {{ user.email }}</p>
-{% else %}
-  <a class="btn btn-primary" href="{% provider_login_url 'facebook' %}">Login With Facebook</a>
+  <p>Logado como: {{ user.username }}</p>
 {% endif %}
 <br>
 <br>
