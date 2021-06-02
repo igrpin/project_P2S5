@@ -3,6 +3,9 @@
 
 {% load socialaccount %}
 
+<div class="alert alert-danger col-sm-2" role="alert">
+  Você precisa estar logado.
+</div>
 <a class="btn btn-primary" href="{% provider_login_url 'facebook' %}">Login With Facebook</a><br>
 <p></p>
 <a class="btn btn-secondary" href="{% url 'index' %}">Voltar</a>

@@ -59,7 +59,7 @@ THIRDS_APPS = [
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
-SITE_ID = 2
+SITE_ID = 3
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
@@ -145,9 +145,9 @@ DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'banco_teste_docker',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': '127.0.0.1',
+            'USER': 'user_teste',
+            'PASSWORD': '123456',
+            'HOST': '192.168.0.103',
             'PORT': 5432,
     }
 }

@@ -4,32 +4,59 @@
 {% load socialaccount %}
 
 {% if user.is_authenticated %}
-  <p>Logado como: {{ user.username }}</p>
+  <p class="lead">Olá,<strong> {{ user.username }} </strong>, por favor escolha uma ação.</p>
+{% else %}
+  <a class="btn btn-primary" href="{% provider_login_url 'facebook' %}">Login With Facebook</a><br>
 {% endif %}
+
 <br>
 <br>
-<h3>Cliente</h3>
-<ul>
-    <a href="{% url 'listarCliente' %}"><li align="center" class="list-group-item col-sm-3">Listar</li></a><br>
-    <a href="{% url 'cadastrarCliente' %}"><li align="center" class="list-group-item col-sm-3">Cadastrar</li></a>
-</ul>
 
-<h3>Venda</h3>
-<ul>
-    <a href="{% url 'listarVenda' %}"><li align="center" class="list-group-item col-sm-3">Listar</li></a><br>
-    <a href="{% url 'cadastrarVenda' %}"><li align="center" class="list-group-item col-sm-3">Cadastrar</li></a>
-</ul>
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3>Cliente</h3>
+        <p class="card-text"></p>
+        <a href="{% url 'cadastrarCliente' %}" class="btn btn-warning">Cadastrar</a>
+        <a href="{% url 'listarCliente' %}" class="btn btn-primary">Listar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3>Venda</h3>
+        <p class="card-text"></p>
+        <a href="{% url 'cadastrarVenda' %}" class="btn btn-warning">Cadastrar</a>
+        <a href="{% url 'listarVenda' %}" class="btn btn-primary">Listar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Estoque</h3>
-<ul>
-    <a href="{% url 'listarEstoque' %}"><li align="center" class="list-group-item col-sm-3">Listar</li></a><br>
-    <a href="{% url 'cadastrarEstoque' %}"><li align="center" class="list-group-item col-sm-3">Cadastrar</li></a>
-</ul>
-
-<h3>Fornecedor</h3>
-<ul>
-    <a href="{% url 'listarFornecedor' %}"><li align="center" class="list-group-item col-sm-3">Listar</li></a><br>
-    <a href="{% url 'cadastrarFornecedor' %}"><li align="center" class="list-group-item col-sm-3">Cadastrar</li></a><br>
-</ul>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3>Estoque</h3>
+        <p class="card-text"></p>
+        <a href="{% url 'cadastrarEstoque' %}" class="btn btn-warning">Cadastrar</a>
+        <a href="{% url 'listarEstoque' %}" class="btn btn-primary">Listar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3>Fornecedor</h3>
+        <p class="card-text"></p>
+        <a href="{% url 'cadastrarFornecedor' %}" class="btn btn-warning">Cadastrar</a>
+        <a href="{% url 'listarFornecedor' %}" class="btn btn-primary">Listar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
